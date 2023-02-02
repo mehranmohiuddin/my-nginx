@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+
+spec:
+  # Set Service type to Loadbalancer
+  type: LoadBalancer
+  selector:
+    app: nginx
+  ports:
+  - port: 80
+    targetPort: 80
