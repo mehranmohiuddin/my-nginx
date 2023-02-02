@@ -1,0 +1,36 @@
+# K8s PI version
+apiVersion: apps/v1
+# Resource type
+kind: Deployment
+# Metadata about the deployment
+metadata:
+  name: frontend
+  labels:
+    app: my-nginx
+    tier: frontend
+spec:
+  # Select Pod template labels
+  # Selector is used to "select" the template to use (based on labels)
+  selector:
+    matchLabels:
+      tier: frontend
+  # Template used to create the pods
+  # Template to use to create the Pod/Containers (noe that the selector matches the label)
+  template:
+    metadata:
+      labels:
+        tier: frontend
+    spec:
+      # Containers that will run in the pod
+      containers:
+      - name: my-nginx
+        image: nginx:alpine
+        # You can include probes inside your deployment yaml file
+        livenessProbe:
+          httpGet:
+            path: /index.html
+            port: 80
+          initialDelaySeconds: 15
+          timeoutSeconds: 2
+          periodSeconds: 5
+          failureThreshold: 1

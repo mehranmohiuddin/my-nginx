@@ -1,3 +1,2 @@
 Playing around with K8s.
-Included are sample yaml files to deploy pods and maybe other stuff in the future.
-
+Included are sample yaml files used in K8s for pods, deployments, etc.
